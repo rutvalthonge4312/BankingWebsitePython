@@ -4,7 +4,7 @@ import HomeInfo from '../components/HomeInfo'
 
 function home() {
   return (
-    <div className="container">
+    <div className="container-fluid">
        <Navbar/>
        <HomeInfo/>
     </div>
