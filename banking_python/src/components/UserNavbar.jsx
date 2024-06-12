@@ -1,7 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { deleteUser } from '../featurs/userSlice';
 
-function Navbar() {
+function UserNavbar() {
+    const dispatch = useDispatch()
+    const nevigate=useNavigate()
+    const logout=()=>{
+        localStorage.removeItem("userData");
+        dispatch(deleteUser());
+        nevigate('/')
+    }
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -30,8 +39,7 @@ function Navbar() {
             </li>
           </ul>
           <div className="d-flex">
-            <Link to="/login" className="btn btn-outline-success me-2">Log In</Link>
-            <Link to="/signup" className="btn btn-outline-primary">Sign Up</Link>
+            <button className="btn btn-outline-success me-2" onClick={logout}>Log Out</button>
           </div>
         </div>
       </div>
@@ -39,4 +47,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default UserNavbar;
