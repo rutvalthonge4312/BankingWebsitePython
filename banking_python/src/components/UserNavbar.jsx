@@ -39,7 +39,10 @@ function UserNavbar() {
             </li>
           </ul>
           <div className="d-flex">
-            <button className="btn btn-outline-success me-2" onClick={logout}>Log Out</button>
+          <button className="btn btn-outline-success me-2" onClick={()=>{
+            nevigate('/update-profile');
+          }}>Update Profile</button>  
+            <button className="btn btn-outline-danger me-2" onClick={logout}>Log Out</button>
           </div>
         </div>
       </div>

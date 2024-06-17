@@ -197,3 +197,10 @@ strong{
     margin: 0 !important;
   }
 }
+@media screen and (max-width:800px) {
+  .update-body, .update-button{
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+}
