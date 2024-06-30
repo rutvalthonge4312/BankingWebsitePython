@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { updateUser } from '../featurs/userSlice';
 import UserNavbar from '../components/UserNavbar';
+import balance from '../assetes/balance.png'
+import AdminServicesCard from '../components/AdminServiceCard';
 
 
 function UserDashBord() {
@@ -30,7 +32,8 @@ function UserDashBord() {
 
     return (
         data[0] !== undefined ? (
-            <div className="container-fluid text-center">
+            data[0].role !== "admin" ? 
+            (<div className="container-fluid text-center">
                 <UserNavbar />
                 <div className="container">
                     <h2>Hello <strong>{data[0].first_name}</strong>,</h2>
@@ -44,7 +47,19 @@ function UserDashBord() {
                     <h3>Checkout Previous <strong>Transactions</strong>...</h3>
                 </div>
                 <Footer />
+            </div>):
+            <div className="container-fluid text-center">
+            <UserNavbar />
+            <div className="container">
+                <h2>Hello <strong>{data[0].first_name}</strong>,</h2>
+                <p>Welcome Back Again.</p>
             </div>
+            <div className="container p-1">
+                    <h3 className='m-3'>Checkout the Following <strong>Services</strong>....</h3>
+                    <AdminServicesCard />
+                </div>
+            <Footer />
+        </div>
         ) : null
     );
 }

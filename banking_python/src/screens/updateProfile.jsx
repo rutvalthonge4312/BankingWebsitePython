@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import UserNavbar from '../components/UserNavbar'
 import updateProfile from '../assetes/update.png'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -6,10 +6,14 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateUser } from '../featurs/userSlice'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Updatepassword from '../components/modals/updatepassword';
+import UpdateMpin from '../components/modals/updateMpin';
 
 function UpdateProfile() {
     const navigate = useNavigate();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const[visible, setVisible]=useState(false)
+    const[visiblePin, setVisiblePin]=useState(false)
     let data = useSelector((state) => state.users);
     console.log(data)
     useEffect(() => {
@@ -28,6 +32,8 @@ function UpdateProfile() {
   return (
     <div className='page-body container-fluid'>
         <UserNavbar/>
+        <Updatepassword visible={visible} setVisible={setVisible} />
+        <UpdateMpin visiblePin={visiblePin} setVisiblePin={setVisiblePin} />
         <div className="back-arrow position-absolute top-5 start-0 p-3">
             <FontAwesomeIcon icon={faArrowLeft} size="2x" onClick={() => navigate(-1)} style={{ cursor: 'pointer' }} />
         </div>
@@ -47,9 +53,17 @@ function UpdateProfile() {
                     <hr />
                     <div className="container update-button d-flex  justify-content-center">
                         <button className='btn btn-primary m-1  shadow'>Update Mobile</button>
-                        <button className='btn btn-primary m-1  shadow'>Update Password</button>
+                        <button className='btn btn-primary m-1  shadow'
+                        onClick={()=>{
+                            setVisible(true)
+                        }}
+                        >Update Password</button>
                         <button className='btn btn-primary m-1  shadow'>Update Email</button>
-                        <button className='btn btn-primary m-1  shadow'>Update M-pin</button>
+                        <button className='btn btn-primary m-1  shadow'
+                        onClick={()=>{
+                            setVisiblePin(true);
+                        }}
+                        >Update M-pin</button>
                     </div>
                 </div>
             </div>

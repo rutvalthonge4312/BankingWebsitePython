@@ -1,4 +1,5 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit"
+import Cookies from 'js-cookie';
 
 
 export const userSlice=createSlice({
@@ -7,12 +8,14 @@ export const userSlice=createSlice({
     reducers:{
         addUser(state,action){
             state.push(action.payload)
+            Cookies.set('token',action.payload.access_token);
         },
         updateUser(state,action){
             while (state.length > 0) {
                 state.pop();
             }
             state.push(action.payload)
+            Cookies.set('token',action.payload.access_token);
         },
         deleteUser(state,action){
             while (state.length > 0) {
