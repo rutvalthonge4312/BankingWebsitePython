@@ -1,9 +1,11 @@
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const api = axios.create({
     // baseURL: 'Update PROD Url',
     baseURL:'http://localhost:8000/',
  });
+
 
 
 api.interceptors.request.use((req) => {
@@ -18,7 +20,7 @@ api.interceptors.request.use((req) => {
         }
     }
     if (token) {
-        req.headers.authorization = `Bearer ${token}`
+        req.headers.authorization = `Bearer ${token}`;
     }
     return req
 })
