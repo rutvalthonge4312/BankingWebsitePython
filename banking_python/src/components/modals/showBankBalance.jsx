@@ -10,39 +10,37 @@ import api from '../../api/api';
 import { ToastContainer, toast } from 'react-toastify';
 import { PushSpinner } from 'react-spinners-kit';
 
-function Updatepassword({ visible, setVisible }) {
-    const [oldPassword, setOldPassword] = useState('')
-    const [newPassword, setNewPassword] = useState('')
+function ShowBankBalance({ visiblePin, setVisiblePin ,balance,setBalance }) {
+    const [oldMpin, setOldMpin] = useState('')
     const [loading, setLoading] = useState(false)
     const submitForm = () => {
         setLoading(true);
-        const apiUrl = 'user/update_password/';
+        const apiUrl = 'account/check_balance/';
         api.post(
             apiUrl,
             {
-                oldPassword: oldPassword,
-                newPassword: newPassword,
+                mPin: oldMpin,
                 getHeaders,
             }
         ).
             then((response) => {
-                toast.success(response.data.message);
+                toast.success("Successfully Fetched Bank Balance");
+                setBalance(response.data.message)
             }).
             catch((error) => {
                 console.log(error)
                 toast.error(error.response.data.message);
             }).finally(() => {
                 setLoading(false);
-                setVisible(false);
             })
     }
     return (
         <div >
             <ToastContainer />
             <CModal
-                visible={visible}
+                visible={visiblePin}
                 alignment="center"
-                onClose={() => setVisible(false)}
+                onClose={() => setVisiblePin(false)}
                 aria-labelledby="LiveDemoExampleLabel"
             >
                 <CModalBody>
@@ -50,18 +48,14 @@ function Updatepassword({ visible, setVisible }) {
                         <div className="form-floating  mb-3">
                             <input type="text" className="form-control" id="fName" placeholder="M-pin"
                                 onChange={(e) =>
-                                    setOldPassword(e.target.value.trim())
+                                    setOldMpin(e.target.value.trim())
                                 }
                             />
-                            <label htmlFor="fName">Old Password</label>
+                            <label htmlFor="mPin">Enter M-Pin</label>
                         </div>
-                        <div className="form-floating  mb-3">
-                            <input type="text" className="form-control" id="fName" placeholder="M-pin"
-                                onChange={(e) =>
-                                    setNewPassword(e.target.value.trim())
-                                }
-                            />
-                            <label htmlFor="fName">New Password</label>
+                        <div className="container card">
+                                <h4>Available Balance:</h4>
+                                <h3>{balance}</h3>
                         </div>
                         <div className="text-center mt-4">
                             <button id="signupButton" className="btn btn-primary w-75 text-center" onClick={submitForm}>
@@ -70,14 +64,14 @@ function Updatepassword({ visible, setVisible }) {
                                         <div className="container  d-flex justify-content-center align-items-center">
                                             <PushSpinner size={30} color="white" />
                                         </div>
-                                    ) : 'Update Password'
+                                    ) : 'Show Balance'
                                 }
                             </button>
                         </div>
                     </div>
                 </CModalBody>
                 <CModalFooter>
-                    <CButton color="secondary" onClick={() => setVisible(false)}>
+                    <CButton color="secondary" onClick={() => setVisiblePin(false)}>
                         Close
                     </CButton>
                 </CModalFooter>
@@ -86,4 +80,4 @@ function Updatepassword({ visible, setVisible }) {
     )
 }
 
-export default Updatepassword
+export default ShowBankBalance

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ServicesCard from '../components/ServicesCard'
 import Footer from '../components/Footer'
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,12 +7,15 @@ import { updateUser } from '../featurs/userSlice';
 import UserNavbar from '../components/UserNavbar';
 import balance from '../assetes/balance.png'
 import AdminServicesCard from '../components/AdminServiceCard';
+import ShowBankBalance from '../components/modals/showBankBalance';
 
 
 function UserDashBord() {
     const navigate = useNavigate();
     const dispatch = useDispatch()
     let data = useSelector((state) => state.users);
+    const [balance,setBalance] = useState("****.**")
+    const [visiblePin, setVisiblePin] = useState(false)
     console.log(data)
     useEffect(() => {
         if (data[0] === undefined) {
@@ -27,7 +30,9 @@ function UserDashBord() {
             
         }
     }, [data, navigate]);
-
+    const checkBankBalance = () => {
+        setVisiblePin(true);
+    }
 
 
     return (
@@ -36,9 +41,20 @@ function UserDashBord() {
             (<div className="container-fluid text-center">
                 <UserNavbar />
                 <div className="container">
-                    <h2>Hello <strong>{data[0].first_name}</strong>,</h2>
-                    <p>Welcome Back Again.</p>
+                    <h1>Hello <strong>{data[0].first_name}</strong>,</h1>
+                    <h6>Welcome Back Again.</h6>
                 </div>
+                <ShowBankBalance visiblePin={visiblePin} setVisiblePin={setVisiblePin} balance={balance} setBalance={setBalance} />
+                <div className="container d-flex flex-row card w-50 float-left justify-content-between align-items-center">
+                    <h3 className='text-center  text-muted mb-0'>Balance: <strong>{balance}</strong></h3>
+                   <div>
+                    <button className='btn btn-outline-success mx-2' onClick={checkBankBalance}>Check</button>
+                    <button className='btn btn-outline-danger' onClick={()=>{
+                        setBalance("****.**")
+                    }}>Hide</button>
+                   </div>
+                </div>
+
                 <div className="container p-1">
                     <h3 className='m-3'>Checkout the Following <strong>Services</strong>....</h3>
                     <ServicesCard />

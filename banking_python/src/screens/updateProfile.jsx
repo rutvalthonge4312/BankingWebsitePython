@@ -15,9 +15,10 @@ function UpdateProfile() {
     const[visible, setVisible]=useState(false)
     const[visiblePin, setVisiblePin]=useState(false)
     let data = useSelector((state) => state.users);
-    console.log(data)
+    console.log(data[0])
     useEffect(() => {
-        if (data[0] === undefined) {
+        if (data[0] == undefined) {
+            console.log("HI")
             const localData = localStorage.getItem('userData');
             if (localData) {
                 dispatch(updateUser(JSON.parse(localData)));

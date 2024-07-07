@@ -37,6 +37,7 @@ function Signup() {
           console.log(response);
           console.log(response);
           toast.success(response.data.message);
+          navigate("/")
         
         }).catch((error) => {
           console.log(error)
