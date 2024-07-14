@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar'
 import { Link, useNavigate } from 'react-router-dom'
 import loginImg from '../assetes/login.png'
+import gmail from '../assetes/gmail.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Footer from '../components/Footer'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -12,11 +13,13 @@ import getHeaders from '../api/header';
 import { PushSpinner } from 'react-spinners-kit';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../featurs/userSlice';
+import MobileLogin from '../components/modals/mobileLogin';
 function Login() {
   const navigate = useNavigate()
   const [phone, setPhone] = useState(0)
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
+  const [showMobileLogin, setShowMobileLogin] = useState(false)
   const dispatch = useDispatch()
 
 
@@ -57,6 +60,7 @@ function Login() {
         <FontAwesomeIcon icon={faArrowLeft} size="2x" onClick={() => navigate(-1)} style={{ cursor: 'pointer' }} />
       </div>
       <ToastContainer />
+      <MobileLogin visiblePin={showMobileLogin} setVisiblePin={setShowMobileLogin} />
       <div className="container loginForm position-relative border shadow p-3 mt-5">
         <div className="p-3">
           <div className="form-floating mb-3">
@@ -92,8 +96,13 @@ function Login() {
         </div>
         <hr className='w-75 mx-auto' />
         <h5 className="text-center"><strong>OR</strong></h5>
-        <div className="container text-center">
-          <p className="border mobile-login border-black btn p-2 rounded ">Log in with mobile Number</p>
+        <div className="container  text-center">
+          <p className="border  mobile-login border-black btn p-2 rounded " onClick={()=>{
+            setShowMobileLogin(true)
+          }}>
+          <img src={gmail} alt="" className='img-fluid gmail-logo mx-3' />
+            Log in with otp
+            </p>
         </div>
       </div>
 
