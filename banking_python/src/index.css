@@ -117,6 +117,7 @@ form{
   width: 50px;
   height: 50px;
 }
+
 @keyframes slideArrow {
   0% {
     transform: scale(1) rotate(0deg);
@@ -168,6 +169,9 @@ strong{
   border-radius: 22px !important;
   height: 3rem;
 }
+.checkAmountBlock{
+  width:50% !important;
+}
 
 
 @media screen and (max-width:1035px) {
@@ -200,11 +204,22 @@ strong{
     padding: 0 !important;
     margin: 0 !important;
   }
+  
 }
+@media screen and (max-width:670px) {
+  
+  .checkAmountBlock{
+    width:100% !important;
+  }
+}
+
 @media screen and (max-width:800px) {
   .update-body, .update-button{
     display: flex !important;
     flex-direction: column !important;
+  }
+  .loginImageContainer{
+    display: none;
   }
   
 }

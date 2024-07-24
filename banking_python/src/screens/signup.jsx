@@ -54,9 +54,9 @@ function Signup() {
         </div>
         <ToastContainer />
           <h2 className='text-start my-2  mt-5'><strong>Hey User,Fill the Signup Form Below</strong></h2>
-          <div className='position-relative'>
-              <form className=' d-flex p-2  container rounded position-relative' style={{ zIndex: 2 }}>
-                  <div className='col-md-12   w-100'>
+          <div className='container p-3'>
+              <form className=' d-flex p-3  container rounded position-relative' style={{ zIndex: 2 }}>
+                  <div className='container col-md-7'>
                       <div className="form-floating  mb-3">
                           <input type="text" className="form-control" id="fName" placeholder="First Name"
                           onChange={(e) =>
@@ -129,13 +129,17 @@ function Signup() {
                                 <div className="container  d-flex justify-content-center align-items-center">
                                 <PushSpinner size={30} color="white" />
                                 </div>
-                            ) : 'Log in'
+                            ) : 'Sign Up'
                             }
                         </button>
                       </div>
                   </div>
+                  <div className="container mx-auto my-auto  loginImageContainer">
+                    <img id='signUpImage' src={signupImg} className='img-fluid '  alt="Sign Up Background " />
+                  </div>
+
               </form>
-              <img id='signUpImage' src={signupImg} className='img-fluid position-absolute top-0 start-0 w-100 h-100'  alt="Sign Up Background " />
+              {/* <img id='signUpImage' src={signupImg} className='img-fluid position-absolute top-0 start-0 w-100 h-100'  alt="Sign Up Background " /> */}
           </div>
           <Footer/>
       </div>

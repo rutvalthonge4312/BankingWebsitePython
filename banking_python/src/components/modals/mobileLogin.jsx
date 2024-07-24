@@ -4,6 +4,7 @@ import {
     CModalBody,
     CModalFooter,
     CButton,
+    CHeader,
 } from '@coreui/react';
 import getHeaders from '../../api/header';
 import api from '../../api/api';
@@ -41,7 +42,6 @@ function MobileLogin({ visiblePin, setVisiblePin }) {
                 navigate('/user')
             }).
             catch((error) => {
-                console.log(error)
                 toast.error(error.response.data.message);
             }).finally(() => {
                 setLoading(false);
@@ -104,6 +104,7 @@ function MobileLogin({ visiblePin, setVisiblePin }) {
                         </div>
                         <div className="form-floating  mb-3">
                             <input type="text" className="form-control" id="otp" placeholder="OTP"
+                                readOnly={!sendOtp}
                                 onChange={(e) =>
                                     setOtp(e.target.value.trim())
                                 }

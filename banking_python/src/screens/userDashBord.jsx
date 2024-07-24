@@ -8,6 +8,7 @@ import UserNavbar from '../components/UserNavbar';
 import balance from '../assetes/balance.png'
 import AdminServicesCard from '../components/AdminServiceCard';
 import ShowBankBalance from '../components/modals/showBankBalance';
+import CreditMoney from '../components/modals/creditMoney';
 
 
 function UserDashBord() {
@@ -16,6 +17,7 @@ function UserDashBord() {
     let data = useSelector((state) => state.users);
     const [balance,setBalance] = useState("****.**")
     const [visiblePin, setVisiblePin] = useState(false)
+    
     console.log(data)
     useEffect(() => {
         if (data[0] === undefined) {
@@ -45,7 +47,7 @@ function UserDashBord() {
                     <h6>Welcome Back Again.</h6>
                 </div>
                 <ShowBankBalance visiblePin={visiblePin} setVisiblePin={setVisiblePin} balance={balance} setBalance={setBalance} />
-                <div className="container d-flex flex-row card w-50 float-left justify-content-between align-items-center">
+                <div className="container checkAmountBlock d-flex flex-row card  float-left justify-content-between align-items-center">
                     <h3 className='text-center  text-muted mb-0'>Balance: <strong>{balance}</strong></h3>
                    <div>
                     <button className='btn btn-outline-success mx-2' onClick={checkBankBalance}>Check</button>
