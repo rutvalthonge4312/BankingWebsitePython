@@ -5,6 +5,7 @@ import transaction from '../assetes/transaction.png'
 import balance from '../assetes/balance.png'
 import update from '../assetes/update.png'
 import CreditMoney from './modals/creditMoney';
+import { useNavigate } from 'react-router-dom';
 
 
 const cardData = [
@@ -33,6 +34,7 @@ const cardData = [
         img: update,
         title: "Account Update!",
         buttonText:"update",
+        stateChangeVariable:"update",
         text: "Stay updated with the latest account changes. Get notifications and make adjustments on the go.",
     }
 ];
@@ -55,6 +57,7 @@ function ServicesCard() {
         cardData[index],
         cardData[(index + 1) % cardData.length],
     ];
+    const navigate=useNavigate();
 
     return (
         <div className="carousel-container  mt-3 p-4" >
@@ -72,6 +75,9 @@ function ServicesCard() {
                                 onClick={()=>{
                                     if(card.stateChangeVariable=='transaction'){
                                         setVisibleTrasaction(true);
+                                    }
+                                    else if(card.stateChangeVariable=='update'){
+                                        navigate('/update-profile');
                                     }
                                 }}
                                 >{card.buttonText}</button>

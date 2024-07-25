@@ -9,6 +9,7 @@ import balance from '../assetes/balance.png'
 import AdminServicesCard from '../components/AdminServiceCard';
 import ShowBankBalance from '../components/modals/showBankBalance';
 import CreditMoney from '../components/modals/creditMoney';
+import { ToastContainer } from 'react-toastify';
 
 
 function UserDashBord() {
@@ -38,6 +39,8 @@ function UserDashBord() {
 
 
     return (
+        
+       
         data[0] !== undefined ? (
             data[0].role !== "admin" ? 
             (<div className="container-fluid text-center">
@@ -79,6 +82,7 @@ function UserDashBord() {
             <Footer />
         </div>
         ) : null
+
     );
 }
 

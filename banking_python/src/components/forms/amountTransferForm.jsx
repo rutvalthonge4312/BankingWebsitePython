@@ -5,6 +5,7 @@ import api from '../../api/api'
 import { toast } from 'react-toastify'
 import getHeaders from '../../api/header'
 import { PushSpinner } from 'react-spinners-kit'
+import SucessModal from '../modals/sucessModal'
 
 function AmountTransferForm({ receiverData ,visiblePin,setVisiblePin}) {
     //visiblePin={visiblePin} setVisiblePin={setVisiblePin}
@@ -14,6 +15,7 @@ function AmountTransferForm({ receiverData ,visiblePin,setVisiblePin}) {
         mPin: ""
     })
     const [loading, setLoading] = useState(false)
+    const [showSucess, setShowSucess] = useState(false)
     const transferAmount=()=>{
         setLoading(true);
         const apiUrl = 'account/credit_amount_to_another_acoount/';
@@ -29,7 +31,11 @@ function AmountTransferForm({ receiverData ,visiblePin,setVisiblePin}) {
         ).  
             then((response) => {
                 toast.success(response.data.message);
-                setVisiblePin(false)
+                //setVisiblePin(false)
+                setShowSucess(true)
+                setTimeout(() => {
+                    setVisiblePin(false)
+                }, 3000);
             }).
             catch((error) => {
                 toast.error(error.response.data.message);
@@ -39,6 +45,7 @@ function AmountTransferForm({ receiverData ,visiblePin,setVisiblePin}) {
     }
     return (
         <div className="container">
+            <SucessModal visiblePin={showSucess} setVisiblePin={setShowSucess} />
             <div className="container">
                 <div className="form-floating  mb-3">
                     <input type="number" className="form-control" id="mobile" placeholder="Mobile Number"

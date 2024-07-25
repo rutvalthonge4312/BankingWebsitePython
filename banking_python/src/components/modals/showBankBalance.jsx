@@ -26,6 +26,7 @@ function ShowBankBalance({ visiblePin, setVisiblePin ,balance,setBalance }) {
             then((response) => {
                 toast.success("Successfully Fetched Bank Balance");
                 setBalance(response.data.message)
+                setVisiblePin(false)
             }).
             catch((error) => {
                 console.log(error)
@@ -36,7 +37,7 @@ function ShowBankBalance({ visiblePin, setVisiblePin ,balance,setBalance }) {
     }
     return (
         <div >
-            <ToastContainer />
+          
             <CModal
                 visible={visiblePin}
                 alignment="center"

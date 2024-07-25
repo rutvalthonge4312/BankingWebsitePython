@@ -38,7 +38,6 @@ function Updatepassword({ visible, setVisible }) {
     }
     return (
         <div >
-            <ToastContainer />
             <CModal
                 visible={visible}
                 alignment="center"

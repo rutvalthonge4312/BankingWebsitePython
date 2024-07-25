@@ -8,6 +8,7 @@ import { updateUser } from '../featurs/userSlice'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Updatepassword from '../components/modals/updatepassword';
 import UpdateMpin from '../components/modals/updateMpin';
+import { ToastContainer } from 'react-toastify';
 
 function UpdateProfile() {
     const navigate = useNavigate();
@@ -32,6 +33,7 @@ function UpdateProfile() {
     }, [data, navigate]);
   return (
     <div className='page-body container-fluid'>
+        <ToastContainer />
         <UserNavbar/>
         <Updatepassword visible={visible} setVisible={setVisible} />
         <UpdateMpin visiblePin={visiblePin} setVisiblePin={setVisiblePin} />

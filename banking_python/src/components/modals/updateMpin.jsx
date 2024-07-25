@@ -7,7 +7,7 @@ import {
 } from '@coreui/react';
 import getHeaders from '../../api/header';
 import api from '../../api/api';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import { PushSpinner } from 'react-spinners-kit';
 
 function UpdateMpin({ visiblePin, setVisiblePin }) {
@@ -37,7 +37,6 @@ function UpdateMpin({ visiblePin, setVisiblePin }) {
     }
     return (
         <div >
-            <ToastContainer />
             <CModal
                 visible={visiblePin}
                 alignment="center"
